@@ -1,0 +1,45 @@
+# Variant calling using GATK haplotype
+wget https://github.com/broadinstitute/gatk/releases/download/4.6.2.0/gatk-4.6.2.0.zip 
+
+# Unzip file
+unzip gatk-4.6.2.0.zip 
+
+# Go inside directory 
+cd gatk-4.6.2.0
+
+# Create FASTA index
+samtools faidx chr17.fa 
+
+# Install python 
+python3 --version
+python --version
+
+# Check version again
+python --version 
+
+# Show path
+which python 
+
+# Gatk haplotype apply
+./gatk GenotypeGVCFs … 
+
+# Check if it shown
+ls -lh *.g.vcf.gz
+ls -lh ../chr17.fa ../chr17.fa.fai ../chr17.dict 
+
+# Convert gvcf to vcf 
+./gatk GenotypeGVCFs \ 
+-R ../chr17.fa \ 
+-V SRR39453243.g.vcf.gz \ 
+-O ../SRR39453243.vcf.gz 
+
+ls -lh ../SRR39453243.vcf.gz* 
+
+# Header
+bcftools view -H ../SRR39453243.vcf.gz | head 
+
+# Check vcf file is valid or not
+gzip -t ../SRR39453243.vcf.gz 
+
+# Variant filtering
+bcftools view -i 'QUAL>=30 && INFO/DP>=10 && INFO/MQ>=40 && INFO/QD>=2' ../SRR39453243.vcf.gz -Oz -o ../SRR39453243.filtered.vcf.gz
