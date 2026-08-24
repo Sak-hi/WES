@@ -17,7 +17,6 @@ java -version
 
 # if java not install
 sudo apt install openjdk-17-jre -y 
-
 java -jar ~/Linux/picard.jar MarkDuplicates --version
 
 # Mark duplicates
