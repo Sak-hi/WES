@@ -19,7 +19,7 @@ gunzip chr17.fa.gz
 # Index chromosome 17
 bwa index chr17.fa 
 
-# BWA MEM for alignment (2nd)
+# BWA MEM for alignment
 bwa mem \ 
 -R '@RG\tID:SRR39453243\tSM:SRR39453243\tPL:ILLUMINA' \ 
 chr17.fa \ 
