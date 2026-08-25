@@ -4,70 +4,7 @@ Whole Exome Sequencing (WES) is a sequencing approach used to analyze the exome,
 The purpose of the project was to demonstrate how sequencing data can be converted into biologically and clinically interpretable genetic information through a reproducible bioinformatics workflow. The analysis aimed to identify high-confidence genetic variants, determine their potential molecular consequences, and compare candidate variants with established clinical evidence in ClinVar. In particular, the project allowed you to investigate TP53-associated variation, verify the appropriate transcript and HGVS representation, and distinguish computational predictions from clinically established classifications. Overall, the workflow demonstrates the use of bioinformatics tools for variant identification, functional annotation, validation, and clinical interpretation.
 
 **Workflow**
-┌──────────────────────────────┐
-│     Raw Sequencing Reads     │
-│            FASTQ             │
-└──────────────┬───────────────┘
-               ↓
-┌──────────────────────────────┐
-│      Quality Control         │
-│          FastQC              │
-└──────────────┬───────────────┘
-               ↓
-┌──────────────────────────────┐
-│   Read Trimming & Cleaning   │
-│           fastp              │
-└──────────────┬───────────────┘
-               ↓
-┌──────────────────────────────┐
-│          Post-QC             │
-│           FastQC             │
-└──────────────┬───────────────┘
-               ↓
-┌──────────────────────────────┐
-│   Alignment to Reference     │
-│          BWA-MEM             │
-└──────────────┬───────────────┘
-               ↓
-┌──────────────────────────────┐
-│       SAM → BAM              │
-│         SAMtools             │
-└──────────────┬───────────────┘
-               ↓
-┌──────────────────────────────┐
-│      Sort & Index BAM        │
-│         SAMtools             │
-└──────────────┬───────────────┘
-               ↓
-┌──────────────────────────────┐
-│       Mark Duplicates        │
-│           Picard             │
-└──────────────┬───────────────┘
-               ↓
-┌──────────────────────────────┐
-│       Variant Calling        │
-│     GATK HaplotypeCaller     │
-└──────────────┬───────────────┘
-               ↓
-┌──────────────────────────────┐
-│      Variant Filtering       │
-│          bcftools            │
-└──────────────┬───────────────┘
-               ↓
-┌──────────────────────────────┐
-│      Variant Annotation      │
-│           SnpEff             │
-└──────────────┬───────────────┘
-               ↓
-┌──────────────────────────────┐
-│    Clinical Interpretation   │
-│           ClinVar            │
-└──────────────┬───────────────┘
-               ↓
-┌──────────────────────────────┐
-│       Final Candidate        │
-│           Variants           │
-└──────────────────────────────┘
+Raw sequencing reads (FASTQ) → Quality Control (FastQC) → Read trimming & cleaning (fastp) → Post-QC (FastQC) → Alignment to reference genome (BWA-MEM) → SAM → BAM → Sort & Index BAM (SAMtools) → Mark Duplicates (Picard) → Variant Calling (GATK HaplotypeCaller) → Variant Quality Filtering (bcftools) → Variant Annotation (SnpEff / VEP) → Clinical Interpretation (ClinVar) → Final Candidate Variants           
 
 **Results** 
 The sequencing data were processed through a bioinformatics workflow involving quality control, read preprocessing, alignment to the chr17 reference genome, duplicate marking, variant calling, and variant quality filtering. Following functional annotation with SnpEff, one unique protein-level variant was identified in the TP53 gene from ClinVar database. The variants were characterized based on their genomic position, reference and alternate alleles, HGVS coding and protein notation, molecular consequence, and predicted impact. The identified variants included missense changes, indicating an alteration in the encoded TP53 protein. The candidate variants were subsequently cross-referenced with ClinVar to determine their previously reported clinical significance and review status. This analysis enabled the identification of TP53 variants supported by the sequencing data and their subsequent functional and clinical interpretation. 
