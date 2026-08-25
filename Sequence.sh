@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Installation & update
 sudo apt update 
 sudo apt install sra-toolkit -y
