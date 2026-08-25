@@ -7,9 +7,6 @@ unzip gatk-4.6.2.0.zip
 # Go inside directory 
 cd gatk-4.6.2.0
 
-# Create FASTA index
-samtools faidx chr17.fa 
-
 # Install python 
 python3 --version
 python --version
@@ -20,11 +17,16 @@ python --version
 # Show path
 which python 
 
+# Create FASTA index
+samtools faidx ../chr17.fa
+
+# Create GATK sequence dictionary
+./gatk CreateSequenceDictionary -R ../chr17.fa
+
 # Gatk haplotype apply
 ./gatk GenotypeGVCFs … 
 
 # Check if it shown
-ls -lh *.g.vcf.gz
 ls -lh ../chr17.fa ../chr17.fa.fai ../chr17.dict 
 
 # Convert gvcf to vcf 
@@ -43,3 +45,10 @@ gzip -t ../SRR39453243.vcf.gz
 
 # Variant filtering
 bcftools view -i 'QUAL>=30 && INFO/DP>=10 && INFO/MQ>=40 && INFO/QD>=2' ../SRR39453243.vcf.gz -Oz -o ../SRR39453243.filtered.vcf.gz
+
+# Check filtered variants
+bcftools view -H ../SRR39453243.filtered.vcf.gz | head
+
+# Count filtered variants
+bcftools view -H ../SRR39453243.filtered.vcf.gz | wc -l
+
