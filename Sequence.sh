@@ -4,8 +4,8 @@ sudo apt install sra-toolkit -y
 sudo apt install bwa samtools bcftools fastqc trimmomatic -y
 
 # Download the fastq sequence
-fasterq-dump SRR39453243 --split-files  
-prefetch SRR39453243   
+prefetch SRR39453243 
+fasterq-dump SRR39453243 --split-files     
 ls -lh  
 
 # Convert in compressed format
