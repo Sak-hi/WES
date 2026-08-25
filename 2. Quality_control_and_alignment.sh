@@ -4,7 +4,14 @@ fastqc SRR39453243_2.fastq.gz
 
 # Improve quality control results and adapter trimming install fastp
 Sudo apt install fastp
-fastp \ -i SRR39453243_1.fastq.gz \ -I SRR39453243_2.fastq.gz \ -o clean_R1.fastq.gz \ -O clean_R2.fastq.gz \ --detect_adapter_for_pe \ -h fastp.html \ -j fastp.json 
+fastp \ 
+-i SRR39453243_1.fastq.gz \ 
+-I SRR39453243_2.fastq.gz \ 
+-o clean_R1.fastq.gz \ 
+-O clean_R2.fastq.gz \ 
+--detect_adapter_for_pe \ 
+-h fastp.html \ 
+-j fastp.json 
 
 # Quality control again
 fastqc clean_R2.fastq.gz
