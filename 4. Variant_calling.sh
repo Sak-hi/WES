@@ -29,6 +29,9 @@ samtools faidx ../chr17.fa
 # Check if it shown
 ls -lh ../chr17.fa ../chr17.fa.fai ../chr17.dict 
 
+# Run gatk gvcf haplotype
+./gatk HaplotypeCaller -R chr17.fa -I aligned.markdup.bam -O SRR39453243.g.vcf.gz -ERC GVCF
+
 # Convert gvcf to vcf 
 ./gatk GenotypeGVCFs \ 
 -R ../chr17.fa \ 
